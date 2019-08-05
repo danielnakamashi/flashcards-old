@@ -1,5 +1,4 @@
 {
-  "typescript.validate.enable": false,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -7,6 +6,10 @@
     { "language": "typescriptreact", "autoFix": true }
   ],
   "path-intellisense.mappings": {
-    "components": "${workspaceRoot}/src/components"
+    "@components": "${workspaceRoot}/src/components",
+    "@config": "${workspaceRoot}/src/config",
+    "@containers": "${workspaceRoot}/src/containers",
+    "@ducks": "${workspaceRoot}/src/ducks",
+    "@src": "${workspaceRoot}/src"
   }
 }
