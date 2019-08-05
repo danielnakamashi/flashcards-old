@@ -7,6 +7,7 @@ module.exports = override(
     '@components': path.resolve(__dirname, 'src/components'),
     '@config': path.resolve(__dirname, 'src/config'),
     '@containers': path.resolve(__dirname, 'src/containers'),
+    '@context': path.resolve(__dirname, 'src/context'),
     '@ducks': path.resolve(__dirname, 'src/ducks'),
     '@src': path.resolve(__dirname, 'src'),
   }),

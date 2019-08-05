@@ -9,6 +9,7 @@
     "@components": "${workspaceRoot}/src/components",
     "@config": "${workspaceRoot}/src/config",
     "@containers": "${workspaceRoot}/src/containers",
+    "@context": "${workspaceRoot}/src/context",
     "@ducks": "${workspaceRoot}/src/ducks",
     "@src": "${workspaceRoot}/src"
   }

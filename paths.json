@@ -6,6 +6,7 @@
       "@components/*": ["./components/*"],
       "@config/*": ["./config/*"],
       "@containers/*": ["./containers/*"],
+      "@context/*": ["./context/*"],
       "@ducks": ["./ducks"]
     }
   }

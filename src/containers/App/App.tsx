@@ -8,7 +8,7 @@ import './App.css';
 
 const App: React.FC = () => {
   const user = useSelector(({ user }: Store) => user);
-  return user ? <Login /> : <Topics />;
+  return user ? <Topics /> : <Login />;
 };
 
 export default App;
