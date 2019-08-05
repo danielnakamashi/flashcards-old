@@ -20,7 +20,6 @@ export const uiConfig: firebaseui.auth.Config = {
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       authMethod: 'https://accounts.google.com',
-      clientId: '',
     },
   ],
 };
