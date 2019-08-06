@@ -7,13 +7,12 @@ import Login from '@containers/Login';
 import Topics from '@containers/Topics';
 import FirebaseContext from '@context/firebase';
 import { user } from '@ducks';
-import User from '@src/types/User';
 import './App.css';
 
 const { signIn, signOut } = user.actions;
 
 const restrictUserProperties = (user: firebase.User) =>
-  pick(['displayName', 'email', 'emailVerified', 'isAnonymous', 'phoneNumber', 'photoURL', 'uid'], user) as User;
+  pick(['displayName', 'email', 'phoneNumber', 'photoURL', 'providerId', 'uid'], user) as firebase.UserInfo;
 
 const App: React.FC = () => {
   const firebaseApp = useContext(FirebaseContext);

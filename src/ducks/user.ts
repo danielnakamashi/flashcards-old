@@ -1,7 +1,7 @@
 import { createSlice } from 'redux-starter-kit';
-import User from '@src/types/User';
+import 'firebase/auth';
 
-const userSignIn = (state: User | null, action: any) => action.payload;
+const userSignIn = (state: firebase.UserInfo | null, action: any) => action.payload;
 
 const userSignOut = () => null;
 

@@ -1,10 +1,10 @@
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
 import { user } from '@ducks';
-import User from '@src/types/User';
+import 'firebase/auth';
 
 export interface Store {
-  user: User | null;
+  user: firebase.UserInfo | null;
 }
 
 const reducer = combineReducers({
