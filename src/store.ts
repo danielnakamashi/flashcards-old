@@ -1,6 +1,6 @@
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
-import { user } from '@ducks';
+import { user } from 'Ducks';
 import 'firebase/auth';
 
 export interface Store {

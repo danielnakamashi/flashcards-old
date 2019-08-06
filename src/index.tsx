@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as Redux } from 'react-redux';
-import store from '@src/store';
-import App from '@containers/App';
-import FirebaseContext, { firebaseApp } from '@context/firebase.ts';
+import store from 'Src/store';
+import App from 'Containers/App';
+import FirebaseContext, { firebaseApp } from 'Context/firebase.ts';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 

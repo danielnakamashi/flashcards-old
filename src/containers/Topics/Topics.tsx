@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from 'react';
-import firebaseContext from '@context/firebase';
+import firebaseContext from 'Context/firebase';
 
 const Topic: React.FC = () => {
   const firebaseApp = useContext(firebaseContext);

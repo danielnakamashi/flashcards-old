@@ -4,11 +4,11 @@ const { override, enableEslintTypescript, addWebpackAlias } = require('customize
 module.exports = override(
   enableEslintTypescript(),
   addWebpackAlias({
-    '@components': path.resolve(__dirname, 'src/components'),
-    '@config': path.resolve(__dirname, 'src/config'),
-    '@containers': path.resolve(__dirname, 'src/containers'),
-    '@context': path.resolve(__dirname, 'src/context'),
-    '@ducks': path.resolve(__dirname, 'src/ducks'),
-    '@src': path.resolve(__dirname, 'src'),
+    Components: path.resolve(__dirname, 'src/components'),
+    Config: path.resolve(__dirname, 'src/config'),
+    Containers: path.resolve(__dirname, 'src/containers'),
+    Context: path.resolve(__dirname, 'src/context'),
+    Ducks: path.resolve(__dirname, 'src/ducks'),
+    Src: path.resolve(__dirname, 'src'),
   }),
 );

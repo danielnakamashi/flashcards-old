@@ -6,11 +6,11 @@
     { "language": "typescriptreact", "autoFix": true }
   ],
   "path-intellisense.mappings": {
-    "@components": "${workspaceRoot}/src/components",
-    "@config": "${workspaceRoot}/src/config",
-    "@containers": "${workspaceRoot}/src/containers",
-    "@context": "${workspaceRoot}/src/context",
-    "@ducks": "${workspaceRoot}/src/ducks",
-    "@src": "${workspaceRoot}/src"
+    "Components": "${workspaceRoot}/src/components",
+    "Config": "${workspaceRoot}/src/config",
+    "Containers": "${workspaceRoot}/src/containers",
+    "Context": "${workspaceRoot}/src/context",
+    "Ducks": "${workspaceRoot}/src/ducks",
+    "Src": "${workspaceRoot}/src"
   }
 }

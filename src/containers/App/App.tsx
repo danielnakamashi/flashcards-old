@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { pick } from 'ramda';
 import 'firebase/auth';
-import { Store } from '@src/store';
-import Login from '@containers/Login';
-import Topics from '@containers/Topics';
-import FirebaseContext from '@context/firebase';
-import { user } from '@ducks';
+import { Store } from 'Src/store';
+import Login from 'Containers/Login';
+import Topics from 'Containers/Topics';
+import FirebaseContext from 'Context/firebase';
+import { user } from 'Ducks';
 import './App.css';
 
 const { signIn, signOut } = user.actions;
