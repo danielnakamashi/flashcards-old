@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider as Redux } from 'react-redux';
 import store from 'Src/store';
 import App from 'Containers/App';
-import FirebaseContext, { firebaseApp } from 'Context/firebase.ts';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Redux store={store}>
-    <FirebaseContext.Provider value={firebaseApp}>
-      <App />
-    </FirebaseContext.Provider>
+    <App />
   </Redux>,
   document.getElementById('root'),
 );

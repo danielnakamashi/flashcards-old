@@ -1,21 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { pick } from 'ramda';
 import 'firebase/auth';
 import { Store } from 'Src/store';
 import Login from 'Containers/Login';
 import Topics from 'Containers/Topics';
-import FirebaseContext from 'Context/firebase';
+import { firebaseApp } from 'Context/firebase';
 import { user } from 'Ducks';
-import './App.css';
 
 const { signIn, signOut } = user.actions;
 
 const restrictUserProperties = (user: firebase.User) =>
   pick(['displayName', 'email', 'phoneNumber', 'photoURL', 'providerId', 'uid'], user) as firebase.UserInfo;
 
+const selectUser = ({ user }: Store) => user;
+
 const App: React.FC = () => {
-  const firebaseApp = useContext(FirebaseContext);
   const dispatch = useDispatch();
   useEffect(
     () =>
@@ -26,9 +26,9 @@ const App: React.FC = () => {
           dispatch(signOut());
         }
       }),
-    [dispatch, firebaseApp],
+    [dispatch],
   );
-  const user = useSelector(({ user }: Store) => user);
+  const user = useSelector(selectUser);
 
   return user ? <Topics /> : <Login />;
 };

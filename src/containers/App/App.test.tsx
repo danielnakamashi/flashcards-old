@@ -20,31 +20,27 @@ const userMock = {
 afterEach(cleanup);
 
 describe('App', () => {
-  // it('renders Topic page when user is not set', () => {
-  //   const store = mockStore({ user: userMock });
+  it('renders Topic page when user is not set', () => {
+    const store = mockStore({ user: userMock });
 
-  //   const { getByText } = render(
-  //     <Provider store={store}>
-  //       <App />
-  //     </Provider>,
-  //   );
+    const { getByText } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
 
-  //   expect(getByText('Logout')).toBeInTheDocument();
-  // });
+    expect(getByText('Logout')).toBeInTheDocument();
+  });
 
   it('renders Login page when user is not set', () => {
     const store = mockStore({ user: null });
 
-    try {
-      const { getByTestId } = render(
-        <Provider store={store}>
-          <App />
-        </Provider>,
-      );
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
 
-      expect(getByTestId('firebase-login')).toBeInTheDocument();
-    } catch (error) {
-      console.log(error);
-    }
+    expect(getByTestId('firebase-login')).toBeInTheDocument();
   });
 });
