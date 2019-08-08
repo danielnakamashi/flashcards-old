@@ -3,7 +3,7 @@ import * as Redux from 'redux';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { render, cleanup } from '@testing-library/react';
-import App from './App';
+import AuthGateway from './AuthGateway';
 import '@testing-library/jest-dom/extend-expect';
 
 const middlewares: Redux.Middleware[] = [];
@@ -19,13 +19,13 @@ const userMock = {
 
 afterEach(cleanup);
 
-describe('App', () => {
-  it('renders Topic page when user is not set', () => {
+describe('AuthGateway', () => {
+  it('renders Topic page when user is set', () => {
     const store = mockStore({ user: userMock });
 
     const { getByText } = render(
       <Provider store={store}>
-        <App />
+        <AuthGateway />
       </Provider>,
     );
 
@@ -37,7 +37,7 @@ describe('App', () => {
 
     const { getByTestId } = render(
       <Provider store={store}>
-        <App />
+        <AuthGateway />
       </Provider>,
     );
 

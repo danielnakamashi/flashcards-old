@@ -2,12 +2,13 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "Src/*": ["./*"],
       "Components/*": ["./components/*"],
       "Config/*": ["./config/*"],
       "Containers/*": ["./containers/*"],
       "Context/*": ["./context/*"],
-      "Ducks": ["./ducks"]
+      "Ducks": ["./ducks"],
+      "Redux/*": ["./redux/*"],
+      "Utils/*": ["./utils/*"]
     }
   }
 }

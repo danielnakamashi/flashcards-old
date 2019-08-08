@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { firebaseApp } from 'Context/firebase';
+import { firebaseApp } from 'Utils/firebase';
 
 const Topic: React.FC = () => {
   const handleClickLogout = useCallback(() => {

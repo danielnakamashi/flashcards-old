@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { uiConfig } from 'Config/firebaseConfig';
-import { firebaseApp } from 'Context/firebase';
+import { firebaseApp } from 'Utils/firebase';
 
 const Login: React.FC = () => {
   return (
