@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "dotenv": "^8.0.0",
     "firebase": "^6.3.4",
     "firebaseui": "^4.1.0",
     "ramda": "^0.26.1",
