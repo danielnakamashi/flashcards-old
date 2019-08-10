@@ -1,35 +1,14 @@
-import React, { useEffect } from 'react';
-import { pick } from 'ramda';
-import { useSelector, useDispatch } from 'react-redux';
-import { Store } from 'Redux/store';
-import { user } from 'Ducks';
-import Login from 'Containers/Login';
-import Topics from 'Containers/Topics';
-import { firebaseApp } from 'Utils/firebase';
+import React from 'react';
+import useUser from 'Hooks/useUser';
 
-const { signIn, signOut } = user.actions;
+export interface AuthGatewayProps {
+  authComponent: React.ComponentType;
+  anonymousComponent: React.ComponentType;
+}
 
-const restrictUserProperties = (user: firebase.User) =>
-  pick(['displayName', 'email', 'phoneNumber', 'photoURL', 'providerId', 'uid'], user) as firebase.UserInfo;
-
-const selectUser = ({ user }: Store) => user;
-
-const AuthGateway: React.FC = () => {
-  const dispatch = useDispatch();
-  useEffect(
-    () =>
-      firebaseApp.auth().onAuthStateChanged((user: firebase.User | null) => {
-        if (!!user) {
-          dispatch(signIn(restrictUserProperties(user)));
-        } else {
-          dispatch(signOut());
-        }
-      }),
-    [dispatch],
-  );
-  const user = useSelector(selectUser);
-
-  return user ? <Topics /> : <Login />;
+const AuthGateway = ({ authComponent: AuthComponent, anonymousComponent: AnonymousComponent }: AuthGatewayProps) => {
+  const user = useUser();
+  return user ? <AuthComponent /> : <AnonymousComponent />;
 };
 
 export default AuthGateway;

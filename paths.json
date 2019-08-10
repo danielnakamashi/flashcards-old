@@ -7,6 +7,7 @@
       "Containers/*": ["./containers/*"],
       "Context/*": ["./context/*"],
       "Ducks": ["./ducks"],
+      "Hooks/*": ["./hooks/*"],
       "Redux/*": ["./redux/*"],
       "Utils/*": ["./utils/*"]
     }

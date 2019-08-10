@@ -13,6 +13,7 @@ module.exports = override(
     Containers: path.resolve(__dirname, 'src/containers'),
     Context: path.resolve(__dirname, 'src/context'),
     Ducks: path.resolve(__dirname, 'src/ducks'),
+    Hooks: path.resolve(__dirname, 'src/hooks'),
     Redux: path.resolve(__dirname, 'src/redux'),
     Utils: path.resolve(__dirname, 'src/utils'),
   }),

@@ -11,6 +11,7 @@
     "Containers": "${workspaceRoot}/src/containers",
     "Context": "${workspaceRoot}/src/context",
     "Ducks": "${workspaceRoot}/src/ducks",
+    "Hooks": "${workspaceRoot}/src/hooks",
     "Redux": "${workspaceRoot}/src/redux",
     "Utils": "${workspaceRoot}/src/utils"
   }

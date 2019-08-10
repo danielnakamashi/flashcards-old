@@ -2,7 +2,7 @@ import React from 'react';
 import * as Redux from 'redux';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, act } from '@testing-library/react';
 import AuthGateway from './AuthGateway';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -16,31 +16,32 @@ const userMock = {
   providerId: '1',
   uid: '1',
 };
+const AuthComponent = () => <div>Authenticated</div>;
+const UnauthComponent = () => <div>Unauthenticated</div>;
 
 afterEach(cleanup);
 
 describe('AuthGateway', () => {
-  it('renders Topic page when user is set', () => {
+  it('renders Authenticated page when user is set', () => {
     const store = mockStore({ user: userMock });
 
     const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway />
+        <AuthGateway authComponent={AuthComponent} anonymousComponent={UnauthComponent} />
       </Provider>,
     );
 
-    expect(getByText('Logout')).toBeInTheDocument();
+    expect(getByText('Authenticated')).toBeInTheDocument();
   });
 
-  it('renders Login page when user is not set', () => {
+  it('renders Unauthenticated page when user is not set', () => {
     const store = mockStore({ user: null });
-
-    const { getByTestId } = render(
+    const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway />
+        <AuthGateway authComponent={AuthComponent} anonymousComponent={UnauthComponent} />
       </Provider>,
     );
 
-    expect(getByTestId('firebase-login')).toBeInTheDocument();
+    expect(getByText('Unauthenticated')).toBeInTheDocument();
   });
 });
