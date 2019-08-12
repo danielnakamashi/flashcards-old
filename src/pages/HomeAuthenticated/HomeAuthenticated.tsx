@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from 'grommet/components/Box';
 import Layout from 'Components/Layout';
 import SideMenu from 'Components/SideMenu';
-import Topics from 'Components/Topics';
+import Topics from 'Pages/Topics';
 
 const HomeAuthenticated = () => (
   <Layout>

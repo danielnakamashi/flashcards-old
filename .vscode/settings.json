@@ -12,6 +12,7 @@
     "Context": "${workspaceRoot}/src/context",
     "Ducks": "${workspaceRoot}/src/ducks",
     "Hooks": "${workspaceRoot}/src/hooks",
+    "Pages": "${workspaceRoot}/src/pages",
     "Redux": "${workspaceRoot}/src/redux",
     "Utils": "${workspaceRoot}/src/utils"
   }

@@ -14,6 +14,7 @@ module.exports = override(
     Context: path.resolve(__dirname, 'src/context'),
     Ducks: path.resolve(__dirname, 'src/ducks'),
     Hooks: path.resolve(__dirname, 'src/hooks'),
+    Pages: path.resolve(__dirname, 'src/pages'),
     Redux: path.resolve(__dirname, 'src/redux'),
     Utils: path.resolve(__dirname, 'src/utils'),
   }),

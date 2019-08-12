@@ -8,6 +8,7 @@
       "Context/*": ["./context/*"],
       "Ducks": ["./ducks"],
       "Hooks/*": ["./hooks/*"],
+      "Pages/*": ["./pages/*"],
       "Redux/*": ["./redux/*"],
       "Utils/*": ["./utils/*"]
     }

@@ -5,11 +5,11 @@ import { Router } from '@reach/router';
 import store from 'Redux/store';
 import GlobalStyle from 'Containers/GlobalStyle';
 import Spinner from 'Components/Spinner';
-import Home from 'Components/Home';
+import Home from 'Pages/Home';
 import AuthGateway from 'Containers/AuthGateway';
 import Login from 'Components/Login';
 
-const NotFound = React.lazy(() => import('Components/NotFound'));
+const NotFound = React.lazy(() => import('Pages/NotFound'));
 
 const App: React.FC = () => (
   <Redux store={store}>
