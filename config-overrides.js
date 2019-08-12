@@ -1,7 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const { override, enableEslintTypescript, addWebpackAlias, addWebpackPlugin } = require('customize-cra');
+const {
+  override,
+  enableEslintTypescript,
+  addWebpackAlias,
+  addWebpackPlugin
+} = require('customize-cra');
 
 dotenv.config();
 
@@ -16,6 +21,7 @@ module.exports = override(
     Hooks: path.resolve(__dirname, 'src/hooks'),
     Pages: path.resolve(__dirname, 'src/pages'),
     Redux: path.resolve(__dirname, 'src/redux'),
+    Types: path.resolve(__dirname, 'src/types'),
     Utils: path.resolve(__dirname, 'src/utils'),
   }),
   addWebpackPlugin(new webpack.EnvironmentPlugin(process.env)),

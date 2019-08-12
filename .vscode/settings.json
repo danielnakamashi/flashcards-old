@@ -2,8 +2,14 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
   ],
   "path-intellisense.mappings": {
     "Components": "${workspaceRoot}/src/components",
@@ -14,6 +20,7 @@
     "Hooks": "${workspaceRoot}/src/hooks",
     "Pages": "${workspaceRoot}/src/pages",
     "Redux": "${workspaceRoot}/src/redux",
+    "Types": "${workspaceRoot}/src/types",
     "Utils": "${workspaceRoot}/src/utils"
   }
 }

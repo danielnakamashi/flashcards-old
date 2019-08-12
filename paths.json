@@ -10,6 +10,7 @@
       "Hooks/*": ["./hooks/*"],
       "Pages/*": ["./pages/*"],
       "Redux/*": ["./redux/*"],
+      "Types/*": ["./types/*"],
       "Utils/*": ["./utils/*"]
     }
   }

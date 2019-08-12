@@ -5,11 +5,7 @@ import { TextInput } from 'grommet/components/TextInput';
 import { Button } from 'grommet/components/Button';
 import { Add, Subtract } from 'grommet-icons';
 import { adjust, remove } from 'ramda';
-
-export interface Card {
-  word: string;
-  definition: string;
-}
+import { Card } from 'Types/Card';
 
 const useInputTopic = (initialValue: string) => {
   const [topicTitle, setTopicTitle] = useState(initialValue);
@@ -22,22 +18,20 @@ const useInputTopic = (initialValue: string) => {
 
 const useInputCards = (initialValue: Card[], blankCard: Card) => {
   const [cards, setCards] = useState(initialValue);
-  const handleCardTextChange = useCallback(
-    (cardPropertyToChange: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value, dataset } = event.target;
+  const handleCardTextChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, dataset } = event.target;
 
-      if (!dataset.index) {
-        return;
-      }
+    if (!dataset.index || !dataset.name) {
+      return;
+    }
 
-      const index = parseInt(dataset.index, 10);
-      setCards(cards => {
-        const setDefinition = (value: string) => (card: Card) => ({ ...card, [cardPropertyToChange]: value });
-        return adjust(index, setDefinition(value), cards);
-      });
-    },
-    [],
-  );
+    const index = parseInt(dataset.index, 10);
+    const name = dataset.name;
+    setCards(cards => {
+      const setDefinition = (value: string) => (card: Card) => ({ ...card, [name]: value });
+      return adjust(index, setDefinition(value), cards);
+    });
+  }, []);
   const addNewCard = useCallback(() => {
     setCards(cards => [...cards, { ...blankCard }]);
   }, [blankCard]);
@@ -60,31 +54,36 @@ const Topic: React.FC = () => {
   const blankCard: Card = { word: '', definition: '' };
   const { cards, handleCardTextChange, addNewCard, removeCard } = useInputCards([{ ...blankCard }], { ...blankCard });
 
+  const save = () => {};
+
   return (
     <Box direction="column" margin={{ horizontal: 'small' }}>
       <FormField label="Topics Title">
         <TextInput value={topicTitle} onChange={handleTopicChange} />
       </FormField>
-      {cards.map((card: Card, index: number) => {
+      {cards.map((card, index) => {
         return (
           <Box direction="row" key={index} margin={{ vertical: 'small' }} gap="small">
             <TextInput
               placeholder="Word"
               value={card.word}
               data-index={index}
-              onChange={handleCardTextChange('word')}
+              data-name="word"
+              onChange={handleCardTextChange}
             />
             <Button label={<Subtract />} alignSelf="center" gap="small" data-index={index} onClick={removeCard} />
             <TextInput
               placeholder="Definition"
               value={card.definition}
               data-index={index}
-              onChange={handleCardTextChange('definition')}
+              data-name="definition"
+              onChange={handleCardTextChange}
             />
           </Box>
         );
       })}
       <Button icon={<Add />} label="Add Card" alignSelf="center" margin={{ vertical: 'small' }} onClick={addNewCard} />
+      <Button label="Save" alignSelf="center" margin={{ vertical: 'small' }} onClick={save} />
     </Box>
   );
 };
