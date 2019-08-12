@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'Containers/App';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
+import whyDidYouRender from '@welldone-software/why-did-you-render';
+
+whyDidYouRender(React, {
+  onlyLogs: true,
+  titleColor: 'green',
+  diffNameColor: 'darkturquoise',
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

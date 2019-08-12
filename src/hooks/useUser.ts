@@ -12,6 +12,10 @@ const restrictUserProperties = (user: firebase.User) =>
 
 const selectUser = ({ user }: Store) => user;
 
+const signOutAction = () => {
+  firebaseApp.auth().signOut();
+};
+
 const useUser = () => {
   const dispatch = useDispatch();
   useEffect(
@@ -26,7 +30,11 @@ const useUser = () => {
     [dispatch],
   );
   const user = useSelector(selectUser);
-  return user;
+
+  return {
+    user,
+    signOut: signOutAction,
+  };
 };
 
 export default useUser;

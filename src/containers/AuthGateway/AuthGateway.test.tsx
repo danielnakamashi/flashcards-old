@@ -27,7 +27,7 @@ describe('AuthGateway', () => {
 
     const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway authComponent={AuthComponent} anonymousComponent={UnauthComponent} />
+        <AuthGateway authComponent={<AuthComponent />} anonymousComponent={<UnauthComponent />} />
       </Provider>,
     );
 
@@ -38,7 +38,7 @@ describe('AuthGateway', () => {
     const store = mockStore({ user: null });
     const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway authComponent={AuthComponent} anonymousComponent={UnauthComponent} />
+        <AuthGateway authComponent={<AuthComponent />} anonymousComponent={<UnauthComponent />} />
       </Provider>,
     );
 
