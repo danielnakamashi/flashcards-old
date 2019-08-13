@@ -1,9 +1,11 @@
 import { firebaseApp } from 'Utils/firebase';
 import { Card } from 'Types/Card';
-import { Topic } from 'Types/Topic';
+// import { Topic } from 'Types/Topic';
 import useUser from './useUser';
+import 'firebase/firestore';
 
 const useDatabase = () => {
+  console.log(firebaseApp);
   const topicsCollection = firebaseApp.firestore().collection('topics');
   const { user } = useUser();
 
@@ -12,22 +14,26 @@ const useDatabase = () => {
       return;
     }
 
-    const topic = topicsCollection.doc(topicId);
-    const doc = await topic.get();
+    const topic = topicId ? topicsCollection.doc(topicId) : topicsCollection.doc();
+    topic
+      .set({
+        owner: user.uid,
+        name,
+      })
+      .then(async () => {
+        const doc = await topic.get();
+        const data = await doc.get('cards');
 
-    if (!doc.exists) {
-      return;
-    }
-
-    const data = doc.data() as Topic | undefined;
-    if (!data || data.owner !== user.uid) {
-      return;
-    }
-
-    topic.set({
-      owner: user.uid,
-      name,
-    });
+        if (!data) {
+          const cardsCollection = topic.collection('cards');
+          cards.forEach(card => {
+            cardsCollection.doc().set(card);
+          });
+        }
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   };
 
   return { saveTopic };

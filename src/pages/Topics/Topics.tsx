@@ -6,6 +6,7 @@ import { Button } from 'grommet/components/Button';
 import { Add, Subtract } from 'grommet-icons';
 import { adjust, remove } from 'ramda';
 import { Card } from 'Types/Card';
+import useDatabase from 'Hooks/useDatabase';
 
 const useInputTopic = (initialValue: string) => {
   const [topicTitle, setTopicTitle] = useState(initialValue);
@@ -51,10 +52,13 @@ const useInputCards = (initialValue: Card[], blankCard: Card) => {
 
 const Topic: React.FC = () => {
   const { topicTitle, handleTopicChange } = useInputTopic('');
-  const blankCard: Card = { word: '', definition: '' };
+  const blankCard: Card = { id: '', word: '', definition: '' };
   const { cards, handleCardTextChange, addNewCard, removeCard } = useInputCards([{ ...blankCard }], { ...blankCard });
 
-  const save = () => {};
+  const { saveTopic } = useDatabase();
+  const save = () => {
+    saveTopic(topicTitle, cards);
+  };
 
   return (
     <Box direction="column" margin={{ horizontal: 'small' }}>
@@ -64,6 +68,7 @@ const Topic: React.FC = () => {
       {cards.map((card, index) => {
         return (
           <Box direction="row" key={index} margin={{ vertical: 'small' }} gap="small">
+            <input type="hidden" data-name="id" data-index={index} value="" />
             <TextInput
               placeholder="Word"
               value={card.word}
