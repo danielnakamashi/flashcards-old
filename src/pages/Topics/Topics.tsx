@@ -6,15 +6,17 @@ import { Button } from 'grommet/components/Button';
 import { Add, Subtract } from 'grommet-icons';
 import { adjust, remove } from 'ramda';
 import { Card } from 'Types/Card';
+import { Topic as TopicInterface } from 'Types/Topic';
 import useDatabase from 'Hooks/useDatabase';
 
-const useInputTopic = (initialValue: string) => {
-  const [topicTitle, setTopicTitle] = useState(initialValue);
+const useInputTopic = (initialValue: TopicInterface) => {
+  const [topic, setTopic] = useState(initialValue);
   const handleTopicChange = useCallback(e => {
-    setTopicTitle(e.target.value);
+    const topicTitle = e.target.value;
+    setTopic(topic => ({ ...topic, title: topicTitle }));
   }, []);
 
-  return { topicTitle, handleTopicChange };
+  return { topic, handleTopicChange };
 };
 
 const useInputCards = (initialValue: Card[], blankCard: Card) => {
@@ -51,19 +53,20 @@ const useInputCards = (initialValue: Card[], blankCard: Card) => {
 };
 
 const Topic: React.FC = () => {
-  const { topicTitle, handleTopicChange } = useInputTopic('');
+  const blankTopic: TopicInterface = { id: '', title: '' };
+  const { topic, handleTopicChange } = useInputTopic({ ...blankTopic });
   const blankCard: Card = { id: '', word: '', definition: '' };
   const { cards, handleCardTextChange, addNewCard, removeCard } = useInputCards([{ ...blankCard }], { ...blankCard });
 
   const { saveTopic } = useDatabase();
   const save = () => {
-    saveTopic(topicTitle, cards);
+    saveTopic(topic, cards);
   };
 
   return (
     <Box direction="column" margin={{ horizontal: 'small' }}>
       <FormField label="Topics Title">
-        <TextInput value={topicTitle} onChange={handleTopicChange} />
+        <TextInput value={topic.title} onChange={handleTopicChange} />
       </FormField>
       {cards.map((card, index) => {
         return (

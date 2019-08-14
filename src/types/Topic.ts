@@ -1,4 +1,4 @@
 export interface Topic {
-  owner: string;
-  name: string;
+  id: string;
+  title: string;
 }
