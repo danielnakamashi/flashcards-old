@@ -5,32 +5,18 @@ import useUser from './useUser';
 import 'firebase/firestore';
 import { Topic } from 'Types/Topic';
 
-const saveTopicDataFactory = (collection: firebase.firestore.CollectionReference) => async (topic: Topic) => {
+const saveTopicData = async (topic: Topic, cards: Card[], collection: firebase.firestore.CollectionReference) => {
   if (topic.id) {
     const docRef = collection.doc(topic.id);
     docRef.set({
       title: topic.title,
+      cards,
     });
     return docRef;
   } else {
     return collection.add({
       title: topic.title,
-    });
-  }
-};
-
-const saveCardDataFactory = (colRef: firebase.firestore.CollectionReference) => async (card: Card) => {
-  if (card.id) {
-    const docRef = colRef.doc(card.id);
-    docRef.set({
-      word: card.word,
-      definition: card.definition,
-    });
-    return docRef;
-  } else {
-    return colRef.add({
-      word: card.word,
-      definition: card.definition,
+      cards,
     });
   }
 };
@@ -44,12 +30,8 @@ const useDatabase = () => {
       return;
     }
 
-    const saveTopicData = saveTopicDataFactory(topicsCollection);
-    saveTopicData(topic)
-      .then(async topicDoc => {
-        const saveCardData = saveCardDataFactory(topicDoc.collection('cards'));
-        cards.forEach(saveCardData);
-      })
+    return saveTopicData(topic, cards, topicsCollection)
+      .then(topicDoc => topicDoc.id)
       .catch(error => {
         console.log('error', error);
       });

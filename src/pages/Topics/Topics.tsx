@@ -55,18 +55,20 @@ const useInputCards = (initialValue: Card[], blankCard: Card) => {
 const Topic: React.FC = () => {
   const blankTopic: TopicInterface = { id: '', title: '' };
   const { topic, handleTopicChange } = useInputTopic({ ...blankTopic });
-  const blankCard: Card = { id: '', word: '', definition: '' };
+  const blankCard: Card = { word: '', definition: '' };
   const { cards, handleCardTextChange, addNewCard, removeCard } = useInputCards([{ ...blankCard }], { ...blankCard });
 
   const { saveTopic } = useDatabase();
-  const save = () => {
-    saveTopic(topic, cards);
-  };
+  const save = useCallback(async () => {
+    const topicId = await saveTopic(topic, cards);
+
+    console.log(topicId);
+  }, [cards, saveTopic, topic]);
 
   return (
     <Box direction="column" margin={{ horizontal: 'small' }}>
-      <FormField label="Topics Title">
-        <TextInput value={topic.title} onChange={handleTopicChange} />
+      <FormField label="Topics Title" htmlFor="topics-title">
+        <TextInput value={topic.title} onChange={handleTopicChange} id="topics-title" />
       </FormField>
       {cards.map((card, index) => {
         return (

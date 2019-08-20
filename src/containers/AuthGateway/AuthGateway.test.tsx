@@ -2,7 +2,7 @@ import React from 'react';
 import * as Redux from 'redux';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import { render, cleanup, act } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import AuthGateway from './AuthGateway';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -27,7 +27,9 @@ describe('AuthGateway', () => {
 
     const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway authComponent={<AuthComponent />} anonymousComponent={<UnauthComponent />} />
+        <AuthGateway fallback={<UnauthComponent />}>
+          <AuthComponent />
+        </AuthGateway>
       </Provider>,
     );
 
@@ -38,7 +40,9 @@ describe('AuthGateway', () => {
     const store = mockStore({ user: null });
     const { getByText } = render(
       <Provider store={store}>
-        <AuthGateway authComponent={<AuthComponent />} anonymousComponent={<UnauthComponent />} />
+        <AuthGateway fallback={<UnauthComponent />}>
+          <AuthComponent />
+        </AuthGateway>
       </Provider>,
     );
 
